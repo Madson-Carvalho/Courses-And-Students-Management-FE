@@ -12,7 +12,7 @@ import {
     Toolbar,
     Typography
 } from "@mui/material";
-import {Book, Home, Person} from "@mui/icons-material";
+import {Book, Home, Person, Person2} from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useNavigate} from "react-router-dom";
 
@@ -32,8 +32,9 @@ const BasePage = ({children, title}) => {
         <Box sx={{width: 250}} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 {[{page: 'Home', icon: <Home/>, path: '/'},
-                    {page: 'Courses', icon: <Book/>, path: '/courses'},
-                    {page: 'Students', icon: <Person/>, path: '/students'}].map((x) => (
+                    {page: 'Cursos', icon: <Book/>, path: '/courses'},
+                    {page: 'Estudantes', icon: <Person/>, path: '/students'},
+                    {page: 'Professores', icon: <Person2/>, path: '/teachers'}].map((x) => (
                     <ListItem key={x.page} disablePadding onClick={() => hendleNavigate(x.path)}>
                         <ListItemButton>
                             <ListItemIcon>

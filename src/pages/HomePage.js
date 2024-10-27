@@ -4,7 +4,7 @@ import BasePage from "../components/BasePage";
 
 const HomePage = () => {
 
-    const cardMock = [{name: "Estudantes", quantity: 5}, {name: "Cursos", quantity: 25}];
+    const cardMock = [{name: "Estudantes", quantity: 5}, {name: "Cursos", quantity: 25}, {name: "Professores", quantity: 3}];
 
     return (
         <BasePage title='Home'>

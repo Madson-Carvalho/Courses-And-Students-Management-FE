@@ -2,17 +2,16 @@ import BasePage from "../components/BasePage";
 import {Box, Button, TextField} from "@mui/material";
 import MultipleSelect from "../components/Multiselect";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import httpGet from "../utils/httpRequests/httpGet";
 import httpPost from "../utils/httpRequests/httpPost";
-import {useNavigate} from "react-router-dom";
 
-const CreateStudent = () => {
+const CreateTeachers = () => {
     const [courses, setCourses] = useState([]);
-    const [studentData, setStudentData] = useState({
+    const [teacherData, setteacherData] = useState({
         name: '',
         email: '',
-        dateOfBirth: '',
-        selectedCourses: [],
+        courses: [],
     });
     const navigate = useNavigate();
 
@@ -24,27 +23,26 @@ const CreateStudent = () => {
         e.preventDefault();
 
         const formattedData = {
-            name: studentData.name,
-            email: studentData.email,
-            dateOfBirth: new Date(studentData.dateOfBirth).toISOString(),
+            name: teacherData.name,
+            email: teacherData.email,
         };
 
-        httpPost('students/create-student', formattedData);
+        httpPost('teachers/create-teacher', formattedData);
         setTimeout(() => {
-            navigate('/students');
+            navigate('/teachers');
         }, 3000);
     }
 
     function handleChange(event) {
         const {name, value} = event.target;
-        setStudentData((prevData) => ({
+        setteacherData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     }
 
     return (
-        <BasePage title='Novo Estudante'>
+        <BasePage title='Novo Professor'>
             <Box
                 component="form"
                 onSubmit={handleSubmit}
@@ -64,7 +62,7 @@ const CreateStudent = () => {
                     label="Nome"
                     name="name"
                     variant="outlined"
-                    value={studentData.name}
+                    value={teacherData.name}
                     onChange={handleChange}
                     fullWidth
                     required
@@ -75,17 +73,7 @@ const CreateStudent = () => {
                     name="email"
                     type="email"
                     variant="outlined"
-                    value={studentData.email}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                />
-
-                <TextField
-                    name="dateOfBirth"
-                    type="date"
-                    variant="outlined"
-                    value={studentData.dateOfBirth}
+                    value={teacherData.email}
                     onChange={handleChange}
                     fullWidth
                     required
@@ -93,9 +81,9 @@ const CreateStudent = () => {
 
                 <MultipleSelect
                     label='Cursos'
-                    name='selectedCourses'
+                    name='courses'
                     rows={courses}
-                    value={studentData.selectedCourses}
+                    value={teacherData.courses}
                     handleChange={handleChange}
                 />
 
@@ -107,4 +95,4 @@ const CreateStudent = () => {
     )
 }
 
-export default CreateStudent;
+export default CreateTeachers;
